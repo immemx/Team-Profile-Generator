@@ -1,4 +1,4 @@
-const Engineer = ('../lib/Engineer.js')
+const Engineer = require("../lib/Engineer")
 
 // test('Creates an engineer object', () => {
 //     const engineer = new Engineer('engine');
@@ -9,11 +9,18 @@ const Engineer = ('../lib/Engineer.js')
 //     expect()
 // })
 
-test('Set Github account', function() {
+test('Set Github account and getGitHub()', function() {
 
     const employeeGithub = new Engineer('dave', 7, 'email@gmail', 'GITHUB')
-    
-    const value = employee.gitHub
 
-    expect(value).toBe('GITHUB')
+    expect(employeeGithub.gitHub).toEqual(expect.any(String))
+    expect(employeeGithub.getGitHub()).toEqual(expect.any(String))
+
+})
+
+test('getRole() works', function() {
+
+    const fakeEngineer = new Engineer('dave', 7, 'email@gmail', 'GITHUB')
+
+    expect(fakeEngineer.getRole()).toBe('Engineer');
 })
