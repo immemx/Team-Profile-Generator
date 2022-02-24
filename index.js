@@ -4,6 +4,8 @@ const Choice = require('inquirer/lib/objects/choice');
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
+const writeFile = require('./utils/generate-html')
+const HTMLTemplate = require('./src/HTML-template')
 
 const personel = []
 
@@ -80,14 +82,14 @@ const addEmployee = function() {
             name: 'addNewMember',
             message: 'Would you like to add anymore Team members?',
             default: false
-            },
+        }
     ])
     .then(data => {
 
-        const { name, id, email, role, gitHub, school, } = data
-        const teamMember = 
+        let { name, id, email, role, gitHub, school, addNewMember} = data
+        let teamMember = "";
 
-        if (role === 'Engineer') {
+        if(role === 'Engineer') {
             teamMember = new Engineer (name, id, email, gitHub)
         } else if (role === "Intern"){
             teamMember = new Intern (name, id, email, school)
@@ -95,7 +97,7 @@ const addEmployee = function() {
 
         personel.push(teamMember);
 
-        if (addNewMember) {
+        if(addNewMember) {
             return addEmployee(personel);
         } else {
             return personel;
@@ -106,4 +108,12 @@ const addEmployee = function() {
 
 initalizeApp()
     .then(addEmployee)
-    .then(personel => )
+    .then(personel => {
+        return HTMLTemplate(personel)
+    })
+    .then(html => {
+        return writeFile(html)
+    })
+    .catch(err => {
+        console.log(err)
+    })
