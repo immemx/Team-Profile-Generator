@@ -25,14 +25,12 @@ To install the program use the following steps. (NOTE: MUST HAVE NODE.JS INSTALL
 ## Usage
 
 1. type "npm install" to install all neccessary node_modules (They are no tracked by github)  
-![npm-install](imgs/npm-install.png)
 
 2. type "node index" to run the application!  
-![node-index](imgs/node-index.png)
 
 3. Follow the prompts 
 
-4. Get your newly created read me from the dist folder!
+4. Get your newly created HTML File from the dist folder!
 
 ## License
 
